@@ -474,12 +474,12 @@ const Hero = ({ reducedMotion }) => {
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#22C1C3]/20 rounded-full blur-[120px] animate-gradient-shift" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-6 flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left z-20"
         >
 
 
@@ -576,14 +576,14 @@ const Hero = ({ reducedMotion }) => {
         </motion.div>
 
         <motion.div
-          className="relative h-[500px] perspective-1000"
+          className="absolute inset-0 opacity-30 pointer-events-none lg:relative lg:h-[500px] lg:opacity-100 lg:pointer-events-auto perspective-1000"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           style={{ y: y2 }}
         >
           <motion.div
-            className="w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 backdrop-blur-sm relative group"
+            className="w-full h-full lg:aspect-square lg:max-w-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 backdrop-blur-sm relative group"
             style={{
               rotateX: mousePosition.y,
               rotateY: mousePosition.x,
