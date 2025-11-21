@@ -834,7 +834,7 @@ const Experience = () => {
                     <span className="text-[#94A3B8]">{exp.period}</span>
                     {exp.current && (
                       <span className="px-3 py-1 bg-[#22C1C3]/20 text-[#22C1C3] rounded-full text-sm">
-                        Currently Learning
+                        Currently Working
                       </span>
                     )}
                   </div>
