@@ -43,6 +43,8 @@ const FloatingTerms = () => {
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
+        const isMobile = window.innerWidth < 768;
+
         const setCanvasSize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -50,15 +52,18 @@ const FloatingTerms = () => {
         setCanvasSize();
         window.addEventListener('resize', setCanvasSize);
 
+        // Use fewer terms on mobile for less chaos
+        const displayTerms = isMobile ? termsList.slice(0, 15) : termsList;
+
         // Initialize terms with random positions and velocities
-        termsRef.current = termsList.map((term) => ({
+        termsRef.current = displayTerms.map((term) => ({
             text: term,
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 0.5,
             vy: (Math.random() - 0.5) * 0.5,
-            size: Math.random() * 8 + 12, // 12-20px
-            opacity: Math.random() * 0.3 + 0.3, // 0.3-0.6
+            size: isMobile ? Math.random() * 4 + 10 : Math.random() * 8 + 12, // Mobile: 10-14px, Desktop: 12-20px
+            opacity: isMobile ? Math.random() * 0.15 + 0.1 : Math.random() * 0.2 + 0.2, // Mobile: 0.1-0.25, Desktop: 0.2-0.4
         }));
 
         const animate = () => {
@@ -92,7 +97,7 @@ const FloatingTerms = () => {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 200) {
-                        const opacity = (1 - distance / 200) * 0.3;
+                        const opacity = (1 - distance / 200) * 0.2;
                         ctx.beginPath();
                         ctx.moveTo(term1.x, term1.y);
                         ctx.lineTo(term2.x, term2.y);
