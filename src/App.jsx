@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, Copy, Check } from 'lucide-react';
 import Lenis from 'lenis';
+import logo from './assets/logo.svg';
 
 // ============================================================================
 // UTILITY HOOKS & HELPERS
@@ -375,7 +376,7 @@ const Header = ({ activeSection }) => {
           className="text-2xl font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
         >
-          <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
+          <img src={logo} alt="Logo" className="w-8 h-8" />
         </motion.a>
 
         {/* Desktop Nav */}
