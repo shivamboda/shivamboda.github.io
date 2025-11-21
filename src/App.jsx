@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, Copy, Check } from 'lucide-react';
 import Lenis from 'lenis';
 import logo from './assets/logo.svg';
+import FloatingTerms from './FloatingTerms';
 
 // ============================================================================
 // UTILITY HOOKS & HELPERS
@@ -469,17 +470,18 @@ const Hero = ({ reducedMotion }) => {
     >
       {/* Background Texture & Gradient */}
       <div className="absolute inset-0 z-0">
+        <FloatingTerms />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#7C5CFF]/20 rounded-full blur-[120px] animate-gradient-shift"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#22C1C3]/20 rounded-full blur-[120px] animate-gradient-shift" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      <div className="container mx-auto px-6 flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-6 flex flex-col gap-12 items-center relative z-10 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col justify-center items-center text-center lg:items-start lg:text-left z-20"
+          className="flex flex-col justify-center items-center text-center z-20"
         >
 
 
@@ -531,7 +533,7 @@ const Hero = ({ reducedMotion }) => {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 items-start sm:items-center"
+            className="flex flex-col sm:flex-row gap-6 items-center justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
@@ -573,50 +575,6 @@ const Hero = ({ reducedMotion }) => {
               ))}
             </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="absolute inset-0 opacity-30 pointer-events-none lg:relative lg:h-[500px] lg:opacity-100 lg:pointer-events-auto perspective-1000"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          style={{ y: y2 }}
-        >
-          <motion.div
-            className="w-full h-full lg:aspect-square lg:max-w-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 backdrop-blur-sm relative group"
-            style={{
-              rotateX: mousePosition.y,
-              rotateY: mousePosition.x,
-              transformStyle: "preserve-3d",
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          >
-            {/* Glassmorphism Highlight */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50 pointer-events-none z-20" />
-
-            {/* Inner Glow */}
-            <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(124,92,255,0.2)] z-20 pointer-events-none rounded-3xl" />
-
-            <div className="absolute inset-0 bg-gradient-to-br from-[#7C5CFF]/10 to-[#22C1C3]/10 z-0" />
-
-            {!reducedMotion ? (
-              <AntiGravityHero />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-9xl font-bold text-white/10">SB</div>
-              </div>
-            )}
-          </motion.div>
-
-          {/* Floating Decorative Elements */}
-          <motion.div
-            className="absolute -top-10 -right-10 w-20 h-20 bg-[#22C1C3]/30 rounded-full blur-xl animate-float"
-            style={{ zIndex: -1 }}
-          />
-          <motion.div
-            className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#7C5CFF]/30 rounded-full blur-xl animate-float"
-            style={{ zIndex: -1, animationDelay: '1s' }}
-          />
         </motion.div>
       </div>
 
