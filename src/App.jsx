@@ -372,6 +372,16 @@ const Header = ({ activeSection }) => {
 
   const navItems = ['About', 'Projects', 'Experience', 'Skills', 'Research', 'Contact'];
 
+  const handleNavClick = (e, item) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    const target = document.getElementById(item.toLowerCase());
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/5 backdrop-blur-2xl border-b border-white/10 shadow-2xl' : 'bg-transparent'
@@ -396,6 +406,7 @@ const Header = ({ activeSection }) => {
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
+              onClick={(e) => handleNavClick(e, item)}
               className={`px-4 py-2 rounded-full transition-colors relative ${activeSection === item.toLowerCase()
                 ? 'text-white'
                 : 'text-[#D6CBB8] hover:text-white'
@@ -441,7 +452,7 @@ const Header = ({ activeSection }) => {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className="block text-[#D6CBB8] hover:text-white transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item)}
                 >
                   {item}
                 </a>
@@ -587,7 +598,7 @@ const Hero = ({ reducedMotion }) => {
           </motion.div>
 
           <motion.p
-            className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-2xl"
+            className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-2xl hyphens-auto break-words"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -623,7 +634,7 @@ const Hero = ({ reducedMotion }) => {
             <DustElement>
               <div className="flex items-center gap-4">
                 <SocialLink icon={Github} href="https://github.com/shivamboda" label="GitHub" />
-                <SocialLink icon={Linkedin} href="https://www.linkedin.in/shivamboda/" label="LinkedIn" />
+                <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/shivamboda/" label="LinkedIn" />
                 <SocialLink
                   icon={Mail}
                   action={() => navigator.clipboard.writeText('shivamboda@gmail.com')}

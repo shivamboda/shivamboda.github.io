@@ -6,6 +6,20 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[#5C4438] to-[#D6CBB8];
   }
+
+  .hyphens-auto {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hyphens-none {
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+  }
 }
 
 @keyframes slow-pulse {
