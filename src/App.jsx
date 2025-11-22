@@ -1263,7 +1263,7 @@ const Contact = () => {
             >
               <Github className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-white font-semibold mb-2">GitHub</h3>
-              <p className="text-[#D6CBB8] text-sm">@Hac-2002</p>
+              <p className="text-[#D6CBB8] text-sm">@shivamboda</p>
             </motion.a>
 
             {/* LinkedIn Card */}
