@@ -581,12 +581,12 @@ const Hero = ({ reducedMotion }) => {
           </motion.div>
 
           <motion.p
-            className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-xl"
+            className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            <DustText text="Building scalable machine learning systems and enterprise-grade data pipelines. Specializing in applied AI, big-data engineering, and high-performance model development." />
+            <DustText text="Building scalable ML systems and enterprise data pipelines. Specializing in applied AI, big-data engineering, and performant model development." />
           </motion.p>
 
           <motion.div
@@ -847,7 +847,7 @@ const Projects = () => {
       title: '2D to 3D',
       subtitle: 'Face Reconstruction',
       description: 'Accurate 3D reconstruction for tracking; demonstrates geometry-aware networks and optimization-based refinement. Enables precise facial tracking from single 2D images.',
-      tags: ['CV', 'ML', '3D'],
+      tags: ['CV', 'ML', '3D Rendering'],
       stack: ['Python', 'Computer Vision', 'Geometry Networks'],
       link: 'https://github.com/shivamboda/Face_Reconstruction'
     },
