@@ -550,7 +550,7 @@ const Hero = ({ reducedMotion }) => {
           >
             <DustText text="Hi — I'm" /> <br />
             <DustElement className="relative inline-block">
-              <span className="bg-gradient-to-r from-[#5C4438] via-[#D6CBB8] to-[#5C4438] bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
+              <span className="font-name bg-gradient-to-r from-[#5C4438] via-[#D6CBB8] to-[#5C4438] bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
                 Shivam Boda
               </span>
               <motion.span

@@ -84,7 +84,7 @@ const FloatingTerms = () => {
                 term.y = Math.max(0, Math.min(canvas.height, term.y));
 
                 // Draw term
-                ctx.font = `bold ${term.size}px Inter, sans-serif`;
+                ctx.font = `bold ${term.size}px Lato, sans-serif`;
                 ctx.fillStyle = `rgba(92, 68, 56, ${term.opacity})`;
                 ctx.fillText(term.text, term.x, term.y);
             });

@@ -14,6 +14,11 @@ export default {
                 'soft-cream': '#EDE6D6',
                 'warm-linen': '#D6CBB8',
             },
+            fontFamily: {
+                'heading': ['"Playfair Display"', 'serif'],
+                'body': ['Lato', 'sans-serif'],
+                'name': ['Righteous', 'cursive'],
+            },
         },
     },
     plugins: [],

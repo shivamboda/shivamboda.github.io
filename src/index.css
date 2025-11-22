@@ -100,6 +100,7 @@ html {
 body {
   background-color: #0D0C0A;
   color: #EDE6D6;
+  font-family: 'Lato', sans-serif;
   background-image:
     radial-gradient(at 0% 0%, rgba(92, 68, 56, 0.15) 0px, transparent 50%),
     radial-gradient(at 100% 0%, rgba(59, 47, 47, 0.15) 0px, transparent 50%),
@@ -120,4 +121,14 @@ body {
   to {
     opacity: 1;
   }
+}
+
+/* Apply Playfair Display to all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
 }
