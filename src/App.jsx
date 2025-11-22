@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, Copy, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, ChevronLeft, Copy, Check } from 'lucide-react';
 import Lenis from 'lenis';
 import logo from './assets/logo.svg';
 import FloatingTerms from './FloatingTerms';
@@ -557,7 +557,7 @@ const Hero = ({ reducedMotion }) => {
 
             <div className="flex items-center gap-4">
               {[
-                { icon: Github, href: "https://github.com/Hac-2002" },
+                { icon: Github, href: "https://github.com/shivamboda" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/shivam-boda-910026246/" },
                 { icon: Mail, href: "mailto:shivamboda14@gmail.com" }
               ].map((social, index) => (
@@ -619,96 +619,333 @@ const About = () => {
 // ============================================================================
 
 const ProjectCard = ({ project, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 50 }}
-      whileHover={{ y: -10, scale: 1.02 }}
-      className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 group cursor-pointer shadow-lg hover:shadow-2xl hover:bg-white/10 transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.25, 0.1, 0.25, 1]
+      }}
+      whileHover={{
+        y: -12,
+        rotateY: 2,
+        rotateX: 2,
+        scale: 1.03
+      }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="group cursor-pointer relative"
+      style={{ transformStyle: 'preserve-3d' }}
     >
-      <div className="flex flex-wrap gap-2 mb-4">
-        {project.tags.map((tag) => (
-          <span key={tag} className="px-3 py-1 bg-[#7C5CFF]/20 text-[#7C5CFF] rounded-full text-sm">
-            {tag}
-          </span>
-        ))}
+      {/* Glow Effect on Hover */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(135deg, rgba(124, 92, 255, 0.4), rgba(34, 193, 195, 0.4))',
+          zIndex: -1
+        }}
+        animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
+      />
+
+      {/* Main Card */}
+      <div className="relative bg-gradient-to-br from-white/10 via-white/5 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 overflow-hidden shadow-2xl hover:shadow-[0_20px_60px_rgba(124,92,255,0.3)] transition-all duration-500">
+
+        {/* Animated Gradient Border */}
+        <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+          background: 'linear-gradient(135deg, #7C5CFF, #22C1C3, #7C5CFF)',
+          backgroundSize: '200% 200%',
+          animation: 'gradient 3s ease infinite',
+          padding: '2px',
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude'
+        }} />
+
+        {/* Shine Effect */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100"
+          style={{
+            background: 'linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
+          }}
+          animate={isHovered ? { x: ['-100%', '200%'] } : { x: '-100%' }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+        />
+
+        {/* Icon + Tags Row */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="text-5xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+            {project.icon}
+          </div>
+          <div className="flex flex-wrap gap-2 justify-end">
+            {project.tags.map((tag, idx) => (
+              <motion.span
+                key={tag}
+                className="px-3 py-1.5 bg-gradient-to-r from-[#7C5CFF]/30 to-[#22C1C3]/30 border border-[#7C5CFF]/40 text-[#7C5CFF] rounded-full text-xs font-semibold backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.15 + idx * 0.05 }}
+                whileHover={{ scale: 1.1, y: -2 }}
+              >
+                {tag}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:bg-gradient-to-r group-hover:from-[#7C5CFF] group-hover:to-[#22C1C3] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-[#94A3B8] mb-6 leading-relaxed text-[15px] min-h-[80px]">
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2.5 mb-6 min-h-[60px]">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 bg-[#22C1C3]/10 text-[#22C1C3] rounded-lg text-sm font-medium border border-[#22C1C3]/20 hover:bg-[#22C1C3]/20 transition-colors"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {/* GitHub Link */}
+        <motion.a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-[0_10px_30px_rgba(124,92,255,0.4)] transition-all group/btn relative overflow-hidden"
+          whileHover={{ scale: 1.05, x: 5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="relative z-10">View on GitHub</span>
+          <ExternalLink size={16} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+        </motion.a>
+
+        {/* Floating Particles Effect */}
+        {isHovered && (
+          <>
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-[#7C5CFF] rounded-full"
+                initial={{
+                  x: Math.random() * 100 + '%',
+                  y: '100%',
+                  opacity: 0
+                }}
+                animate={{
+                  y: '-100%',
+                  opacity: [0, 1, 0]
+                }}
+                transition={{
+                  duration: 2 + Math.random(),
+                  delay: i * 0.2,
+                  repeat: Infinity
+                }}
+              />
+            ))}
+          </>
+        )}
       </div>
-
-      <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#7C5CFF] transition-colors">
-        {project.title}
-      </h3>
-
-      <p className="text-[#94A3B8] mb-4 leading-relaxed">
-        {project.description}
-      </p>
-
-      <div className="flex flex-wrap gap-3 mb-4">
-        {project.stack.map((tech) => (
-          <span key={tech} className="text-sm text-[#22C1C3]">
-            {tech}
-          </span>
-        ))}
-      </div>
-
-      <motion.a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-white hover:text-[#7C5CFF] transition-colors"
-        whileHover={{ x: 5 }}
-      >
-        View on GitHub <ExternalLink size={16} />
-      </motion.a>
     </motion.div>
   );
 };
 
 const Projects = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const projects = [
     {
-      title: 'ChirpSense — Bird Audio Classification',
-      description: 'Endangered bird audio classification system achieving 92% accuracy. Leverages Python, librosa, TensorFlow, data augmentation, and custom CNN architecture to identify species from audio recordings.',
+      icon: '🌊',
+      title: 'OceanSplit',
+      subtitle: 'Bioacoustic Source Separation',
+      description: 'Lightweight pipeline separating marine life from noise using Mel spectrograms, NMF, and compact MLP. Achieves 94.87% accuracy with 80% lower inference cost than U-Net baselines.',
+      tags: ['ML', 'Audio', 'Signal Processing'],
+      stack: ['Python', 'NMF', 'Mel Spectrograms', 'MLP'],
+      link: 'https://github.com/shivamboda/Bioacoustic-Separation-using-BSS'
+    },
+    {
+      icon: '🎵',
+      title: 'ChirpSense',
+      subtitle: 'Bird Audio Classification',
+      description: 'Endangered bird audio classification system achieving 92% accuracy. Leverages Python, librosa, TensorFlow, data augmentation, and custom CNN architecture.',
       tags: ['ML', 'Audio', 'CNN'],
       stack: ['Python', 'TensorFlow', 'librosa', 'Data Augmentation'],
       link: 'https://github.com/shivamboda/ChirpSense'
     },
     {
-      title: '2D to 3D Face Reconstruction',
+      icon: '👁️',
+      title: '2D to 3D',
+      subtitle: 'Face Reconstruction',
       description: 'Accurate 3D reconstruction for tracking; demonstrates geometry-aware networks and optimization-based refinement. Enables precise facial tracking from single 2D images.',
       tags: ['CV', 'ML', '3D'],
       stack: ['Python', 'Computer Vision', 'Geometry Networks'],
       link: 'https://github.com/shivamboda/Face_Reconstruction'
     },
     {
-      title: 'Crack Detection using ML',
-      description: 'TensorFlow ML pipeline for wall crack detection with 99.4% accuracy; deployed as inference pipeline. Practical application for structural safety inspection and maintenance.',
+      icon: '🤖',
+      title: 'TravelBuddy',
+      subtitle: 'AI Itinerary Chatbot',
+      description: 'AI-powered chatbot that generates comprehensive, personalized trip itineraries. Simply input your destination and preferences, and receive a detailed travel plan.',
+      tags: ['AI', 'NLP', 'Chatbot'],
+      stack: ['Python', 'OpenAI API', 'Flask', 'NLP'],
+      link: 'https://github.com/shivamboda/Itinerary_ChatBot'
+    },
+    {
+      icon: '🔍',
+      title: 'Crack Detection',
+      subtitle: 'Infrastructure Safety',
+      description: 'TensorFlow ML pipeline for wall crack detection with 99.4% accuracy; deployed as inference pipeline. Practical application for structural safety inspection.',
       tags: ['ML', 'CV'],
       stack: ['TensorFlow', 'Python', 'Computer Vision', 'CNN'],
       link: 'https://github.com/shivamboda/Crack_Detection'
+    },
+    {
+      icon: '🎓',
+      title: 'Course Chatbot',
+      subtitle: 'Smart Recommendations',
+      description: 'Course recommendation chatbot built using Flask and OpenAI\'s GPT API. Allows users to ask questions and get relevant course recommendations intelligently.',
+      tags: ['AI', 'NLP', 'Chatbot'],
+      stack: ['Python', 'Flask', 'OpenAI GPT API', 'NLP'],
+      link: 'https://github.com/shivamboda/Internship_Chatbot'
     }
   ];
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-b from-[#0F172A] to-[#1E293B]">
-      <div className="container mx-auto px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+    <section id="projects" className="py-32 bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#7C5CFF]/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#22C1C3]/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white mb-16 text-center"
+          className="text-center mb-16"
         >
-          Featured Projects
-        </motion.h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[#7C5CFF] via-[#22C1C3] to-[#7C5CFF] bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
+              Featured Projects
+            </span>
+          </h2>
+          <p className="text-[#94A3B8] text-lg max-w-2xl mx-auto">
+            Hover to explore each project in detail
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        {/* Minimal Hover-Reveal Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              className="relative"
+            >
+              <motion.div
+                animate={{
+                  opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.3,
+                  scale: hoveredIndex === index ? 1.05 : 1,
+                  zIndex: hoveredIndex === index ? 10 : 1
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="bg-gradient-to-br from-white/10 via-white/5 to-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden cursor-pointer"
+              >
+                {/* Compact State (Always Visible) */}
+                <div className="p-8 text-center">
+                  <motion.div
+                    animate={{ scale: hoveredIndex === index ? 1.2 : 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-6xl mb-4"
+                  >
+                    {project.icon}
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-white mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-[#94A3B8] text-sm">
+                    {project.subtitle}
+                  </p>
+                </div>
+
+                {/* Expanded Details (Visible on Hover) */}
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: hoveredIndex === index ? 'auto' : 0,
+                    opacity: hoveredIndex === index ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-8 pb-8 border-t border-white/10 pt-6">
+                    {/* Description */}
+                    <p className="text-[#94A3B8] mb-6 leading-relaxed text-sm">
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-[#7C5CFF]/20 text-[#7C5CFF] rounded-full text-xs font-medium border border-[#7C5CFF]/30"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Stack */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs text-[#22C1C3] font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* CTA Button */}
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-medium text-sm hover:shadow-lg hover:shadow-[#7C5CFF]/50 transition-shadow"
+                    >
+                      View on GitHub <ExternalLink size={16} />
+                    </motion.a>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
