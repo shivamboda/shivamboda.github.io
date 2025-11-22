@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, ChevronLeft, Copy, Check } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, Download, Menu, X, ExternalLink, ChevronRight, ChevronLeft, Copy, Check, Activity, Music, Scan, Bot, Search, GraduationCap } from 'lucide-react';
 import Lenis from 'lenis';
 import logo from './assets/logo.svg';
+import oceanSplitImg from './assets/oceansplit.png';
+import chirpSenseImg from './assets/chirpsense.png';
+import faceMeshImg from './assets/3drendering.png';
+import travelBuddyImg from './assets/travelbuddy.png';
+import crackDetectImg from './assets/crack.png';
+import courseBotImg from './assets/coursehelp.png';
 import FloatingTerms from './FloatingTerms';
 
 // ============================================================================
@@ -768,16 +774,18 @@ const Projects = () => {
 
   const projects = [
     {
-      icon: '🌊',
+      icon: Activity,
+      image: oceanSplitImg,
       title: 'OceanSplit',
       subtitle: 'Bioacoustic Source Separation',
-      description: 'Lightweight pipeline separating marine life from noise using Mel spectrograms, NMF, and compact MLP. Achieves 94.87% accuracy with 80% lower inference cost than U-Net baselines.',
+      description: 'Lightweight pipeline separating marine life from noise using Mel spectrograms, NMF, and compact MLP. Achieves 94.87% accuracy.',
       tags: ['ML', 'Audio', 'Signal Processing'],
       stack: ['Python', 'NMF', 'Mel Spectrograms', 'MLP'],
       link: 'https://github.com/shivamboda/Bioacoustic-Separation-using-BSS'
     },
     {
-      icon: '🎵',
+      icon: Music,
+      image: chirpSenseImg,
       title: 'ChirpSense',
       subtitle: 'Bird Audio Classification',
       description: 'Endangered bird audio classification system achieving 92% accuracy. Leverages Python, librosa, TensorFlow, data augmentation, and custom CNN architecture.',
@@ -786,7 +794,8 @@ const Projects = () => {
       link: 'https://github.com/shivamboda/ChirpSense'
     },
     {
-      icon: '👁️',
+      icon: Scan,
+      image: faceMeshImg,
       title: '2D to 3D',
       subtitle: 'Face Reconstruction',
       description: 'Accurate 3D reconstruction for tracking; demonstrates geometry-aware networks and optimization-based refinement. Enables precise facial tracking from single 2D images.',
@@ -795,7 +804,8 @@ const Projects = () => {
       link: 'https://github.com/shivamboda/Face_Reconstruction'
     },
     {
-      icon: '🤖',
+      icon: Bot,
+      image: travelBuddyImg,
       title: 'TravelBuddy',
       subtitle: 'AI Itinerary Chatbot',
       description: 'AI-powered chatbot that generates comprehensive, personalized trip itineraries. Simply input your destination and preferences, and receive a detailed travel plan.',
@@ -804,7 +814,8 @@ const Projects = () => {
       link: 'https://github.com/shivamboda/Itinerary_ChatBot'
     },
     {
-      icon: '🔍',
+      icon: Search,
+      image: crackDetectImg,
       title: 'Crack Detection',
       subtitle: 'Infrastructure Safety',
       description: 'TensorFlow ML pipeline for wall crack detection with 99.4% accuracy; deployed as inference pipeline. Practical application for structural safety inspection.',
@@ -813,7 +824,8 @@ const Projects = () => {
       link: 'https://github.com/shivamboda/Crack_Detection'
     },
     {
-      icon: '🎓',
+      icon: GraduationCap,
+      image: courseBotImg,
       title: 'Course Chatbot',
       subtitle: 'Smart Recommendations',
       description: 'Course recommendation chatbot built using Flask and OpenAI\'s GPT API. Allows users to ask questions and get relevant course recommendations intelligently.',
@@ -859,88 +871,69 @@ const Projects = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="relative"
+              onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
+              className="group relative bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden hover:border-[#7C5CFF]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] flex flex-col h-full"
             >
-              <motion.div
-                animate={{
-                  opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.3,
-                  scale: hoveredIndex === index ? 1.05 : 1,
-                  zIndex: hoveredIndex === index ? 10 : 1
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-gradient-to-br from-white/10 via-white/5 to-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden cursor-pointer"
-              >
-                {/* Compact State (Always Visible) */}
-                <div className="p-8 text-center">
-                  <motion.div
-                    animate={{ scale: hoveredIndex === index ? 1.2 : 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-6xl mb-4"
-                  >
-                    {project.icon}
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    {project.title}
-                  </h3>
-                  <p className="text-[#94A3B8] text-sm">
-                    {project.subtitle}
-                  </p>
+              {/* Image Section */}
+              <div className="relative h-48 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent z-10 opacity-60" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Floating Icon Badge */}
+                <div className="absolute top-4 right-4 z-20 p-2 bg-black/50 backdrop-blur-md rounded-lg border border-white/10">
+                  {(() => {
+                    const Icon = project.icon;
+                    return <Icon size={20} className="text-[#7C5CFF]" />;
+                  })()}
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#7C5CFF] transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-[#22C1C3] text-sm font-medium mb-3">{project.subtitle}</p>
+
+                <p className="text-[#94A3B8] text-sm mb-4 line-clamp-3 flex-grow">
+                  {project.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className="px-2 py-1 bg-[#1E293B] text-[#94A3B8] rounded text-xs border border-white/5">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Expanded Details (Visible on Hover) */}
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{
-                    height: hoveredIndex === index ? 'auto' : 0,
-                    opacity: hoveredIndex === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-8 pb-8 border-t border-white/10 pt-6">
-                    {/* Description */}
-                    <p className="text-[#94A3B8] mb-6 leading-relaxed text-sm">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-[#7C5CFF]/20 text-[#7C5CFF] rounded-full text-xs font-medium border border-[#7C5CFF]/30"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                {/* Stack & CTA */}
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                  <div className="flex -space-x-2">
+                    {/* Stack Icons/Dots placeholder */}
+                    <div className="w-6 h-6 rounded-full bg-[#7C5CFF]/20 border border-[#7C5CFF]/30 flex items-center justify-center text-[10px] text-[#7C5CFF]">
+                      AI
                     </div>
-
-                    {/* Stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-xs text-[#22C1C3] font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div className="w-6 h-6 rounded-full bg-[#22C1C3]/20 border border-[#22C1C3]/30 flex items-center justify-center text-[10px] text-[#22C1C3]">
+                      ML
                     </div>
-
-                    {/* CTA Button */}
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-medium text-sm hover:shadow-lg hover:shadow-[#7C5CFF]/50 transition-shadow"
-                    >
-                      View on GitHub <ExternalLink size={16} />
-                    </motion.a>
                   </div>
-                </motion.div>
-              </motion.div>
+
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ x: 3 }}
+                    className="text-sm text-white hover:text-[#7C5CFF] flex items-center gap-1 transition-colors"
+                  >
+                    View <ExternalLink size={14} />
+                  </motion.a>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
