@@ -85,7 +85,7 @@ const FloatingTerms = () => {
 
                 // Draw term
                 ctx.font = `bold ${term.size}px Inter, sans-serif`;
-                ctx.fillStyle = `rgba(124, 92, 255, ${term.opacity})`;
+                ctx.fillStyle = `rgba(92, 68, 56, ${term.opacity})`;
                 ctx.fillText(term.text, term.x, term.y);
             });
 
@@ -101,7 +101,7 @@ const FloatingTerms = () => {
                         ctx.beginPath();
                         ctx.moveTo(term1.x, term1.y);
                         ctx.lineTo(term2.x, term2.y);
-                        ctx.strokeStyle = `rgba(124, 92, 255, ${opacity})`;
+                        ctx.strokeStyle = `rgba(92, 68, 56, ${opacity})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }

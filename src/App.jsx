@@ -382,7 +382,7 @@ const Header = ({ activeSection }) => {
         {/* Logo */}
         <motion.a
           href="#"
-          className="text-2xl font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent flex items-center gap-2"
+          className="text-2xl font-bold bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
         >
           <img src={logo} alt="Logo" className="w-8 h-8" />
@@ -396,7 +396,7 @@ const Header = ({ activeSection }) => {
               href={`#${item.toLowerCase()}`}
               className={`px-4 py-2 rounded-full transition-colors relative ${activeSection === item.toLowerCase()
                 ? 'text-white'
-                : 'text-[#94A3B8] hover:text-white'
+                : 'text-[#D6CBB8] hover:text-white'
                 }`}
               whileHover={{ y: -2 }}
               transition={{ type: 'spring', stiffness: 300 }}
@@ -427,7 +427,7 @@ const Header = ({ activeSection }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-[#0F172A]/90 backdrop-blur-2xl border-b border-white/10"
+            className="md:hidden bg-[#0D0C0A]/90 backdrop-blur-2xl border-b border-white/10"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -438,7 +438,7 @@ const Header = ({ activeSection }) => {
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="block text-[#94A3B8] hover:text-white transition-colors"
+                  className="block text-[#D6CBB8] hover:text-white transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item}
@@ -474,7 +474,7 @@ const SocialLink = ({ icon: Icon, href, action, label }) => {
       onClick={handleClick}
       className={`p-3 bg-white/5 border border-white/10 rounded-full transition-all duration-300 ${isCopied
         ? 'text-green-400 border-green-400/50 bg-green-400/10'
-        : 'text-[#94A3B8] hover:text-white hover:bg-white/10'
+        : 'text-[#D6CBB8] hover:text-white hover:bg-white/10'
         }`}
       whileHover={{ scale: 1.1, rotate: 5 }}
       whileTap={{ scale: 0.95 }}
@@ -522,15 +522,15 @@ const Hero = ({ reducedMotion }) => {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0F172A] pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0D0C0A] pt-20"
       onMouseMove={handleMouseMove}
     >
       {/* Background Texture & Gradient */}
       <div className="absolute inset-0 z-0">
         <FloatingTerms />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#7C5CFF]/20 rounded-full blur-[120px] animate-gradient-shift"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#22C1C3]/20 rounded-full blur-[120px] animate-gradient-shift" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#5C4438]/20 rounded-full blur-[120px] animate-gradient-shift"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#D6CBB8]/20 rounded-full blur-[120px] animate-gradient-shift" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <div className="container mx-auto px-6 flex flex-col gap-12 items-center relative z-10 max-w-4xl">
@@ -550,11 +550,11 @@ const Hero = ({ reducedMotion }) => {
           >
             <DustText text="Hi — I'm" /> <br />
             <DustElement className="relative inline-block">
-              <span className="bg-gradient-to-r from-[#7C5CFF] via-[#22C1C3] to-[#7C5CFF] bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
+              <span className="bg-gradient-to-r from-[#5C4438] via-[#D6CBB8] to-[#5C4438] bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
                 Shivam Boda
               </span>
               <motion.span
-                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] rounded-full"
+                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.8, duration: 0.8, ease: "circOut" }}
@@ -563,7 +563,7 @@ const Hero = ({ reducedMotion }) => {
           </motion.h1>
 
           <motion.div
-            className="text-xl md:text-2xl text-[#94A3B8] mb-2 font-light"
+            className="text-xl md:text-2xl text-[#D6CBB8] mb-2 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -572,7 +572,7 @@ const Hero = ({ reducedMotion }) => {
           </motion.div>
 
           <motion.div
-            className="text-lg text-[#7C5CFF] mb-8 font-medium italic"
+            className="text-lg text-[#5C4438] mb-8 font-medium italic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.5 }}
@@ -581,7 +581,7 @@ const Hero = ({ reducedMotion }) => {
           </motion.div>
 
           <motion.p
-            className="text-lg text-[#94A3B8]/80 mb-10 leading-relaxed max-w-xl"
+            className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -598,7 +598,7 @@ const Hero = ({ reducedMotion }) => {
             <DustElement>
               <motion.a
                 href="#projects"
-                className="group relative px-8 py-4 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
+                className="group relative px-8 py-4 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(124, 92, 255, 0.6)' }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -629,7 +629,7 @@ const Hero = ({ reducedMotion }) => {
       </div>
 
       {/* Soft Glow Section Divider */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0F172A] to-transparent z-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0D0C0A] to-transparent z-20 pointer-events-none" />
     </section>
   );
 };
@@ -640,26 +640,26 @@ const Hero = ({ reducedMotion }) => {
 
 const About = () => {
   return (
-    <section id="about" className="pt-0 pb-12 bg-[#0F172A] relative">
+    <section id="about" className="pt-0 pb-12 bg-[#0D0C0A] relative">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">About Me</h2>
 
           <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
-            <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
-              I'm Shivam Boda, an <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">AI and ML engineer</span> who genuinely enjoys figuring out how things work. Whether it’s a complex machine learning problem, an oddly satisfying data pipeline, or a good puzzle, I’m driven by curiosity and the thrill of solving challenges that connect ideas to real-world impact.
+            <p className="text-lg text-[#D6CBB8] leading-relaxed mb-6">
+              I'm Shivam Boda, an <span className="font-bold bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent">AI and ML engineer</span> who genuinely enjoys figuring out how things work. Whether it’s a complex machine learning problem, an oddly satisfying data pipeline, or a good puzzle, I’m driven by curiosity and the thrill of solving challenges that connect ideas to real-world impact.
             </p>
 
-            <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
-              My work spans machine learning, deep learning, computer vision, and big-data engineering. I’ve designed high-accuracy models, built distributed data solutions with Spark, Hive, and HDFS, and taken projects from rough concepts all the way to production-ready systems. I care a lot about <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">clean engineering</span>, <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">scalability</span>, and building things that feel seamless and intelligent rather than just “smart on paper.”
+            <p className="text-lg text-[#D6CBB8] leading-relaxed mb-6">
+              My work spans machine learning, deep learning, computer vision, and big-data engineering. I’ve designed high-accuracy models, built distributed data solutions with Spark, Hive, and HDFS, and taken projects from rough concepts all the way to production-ready systems. I care a lot about <span className="font-bold bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent">clean engineering</span>, <span className="font-bold bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent">scalability</span>, and building things that feel seamless and intelligent rather than just “smart on paper.”
             </p>
 
-            <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
+            <p className="text-lg text-[#D6CBB8] leading-relaxed mb-6">
               Outside of engineering, I’m endlessly fascinated by how the world works, especially physics, biology, and chemistry. That curiosity naturally feeds into my work, where I enjoy experimenting, learning, and pushing what’s possible with applied AI and large-scale systems.
             </p>
 
-            <p className="text-lg text-[#94A3B8] leading-relaxed mb-8">
-              At my core, I love building things that are <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">thoughtful, precise, and genuinely useful</span>.
+            <p className="text-lg text-[#D6CBB8] leading-relaxed mb-8">
+              At my core, I love building things that are <span className="font-bold bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent">thoughtful, precise, and genuinely useful</span>.
             </p>
           </div>
         </div>
@@ -711,7 +711,7 @@ const ProjectCard = ({ project, index }) => {
 
         {/* Animated Gradient Border */}
         <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-          background: 'linear-gradient(135deg, #7C5CFF, #22C1C3, #7C5CFF)',
+          background: 'linear-gradient(135deg, #5C4438, #D6CBB8, #5C4438)',
           backgroundSize: '200% 200%',
           animation: 'gradient 3s ease infinite',
           padding: '2px',
@@ -739,7 +739,7 @@ const ProjectCard = ({ project, index }) => {
             {project.tags.map((tag, idx) => (
               <motion.span
                 key={tag}
-                className="px-3 py-1.5 bg-gradient-to-r from-[#7C5CFF]/30 to-[#22C1C3]/30 border border-[#7C5CFF]/40 text-[#7C5CFF] rounded-full text-xs font-semibold backdrop-blur-sm"
+                className="px-3 py-1.5 bg-gradient-to-r from-[#5C4438]/30 to-[#D6CBB8]/30 border border-[#5C4438]/40 text-[#5C4438] rounded-full text-xs font-semibold backdrop-blur-sm"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.15 + idx * 0.05 }}
@@ -752,12 +752,12 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:bg-gradient-to-r group-hover:from-[#7C5CFF] group-hover:to-[#22C1C3] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+        <h3 className="text-2xl font-bold text-white mb-4 leading-tight group-hover:bg-gradient-to-r group-hover:from-[#5C4438] group-hover:to-[#D6CBB8] group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-[#94A3B8] mb-6 leading-relaxed text-[15px] min-h-[80px]">
+        <p className="text-[#D6CBB8] mb-6 leading-relaxed text-[15px] min-h-[80px]">
           {project.description}
         </p>
 
@@ -766,7 +766,7 @@ const ProjectCard = ({ project, index }) => {
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 bg-[#22C1C3]/10 text-[#22C1C3] rounded-lg text-sm font-medium border border-[#22C1C3]/20 hover:bg-[#22C1C3]/20 transition-colors"
+              className="px-3 py-1 bg-[#D6CBB8]/10 text-[#D6CBB8] rounded-lg text-sm font-medium border border-[#D6CBB8]/20 hover:bg-[#D6CBB8]/20 transition-colors"
             >
               {tech}
             </span>
@@ -778,7 +778,7 @@ const ProjectCard = ({ project, index }) => {
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-[0_10px_30px_rgba(124,92,255,0.4)] transition-all group/btn relative overflow-hidden"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-[0_10px_30px_rgba(124,92,255,0.4)] transition-all group/btn relative overflow-hidden"
           whileHover={{ scale: 1.05, x: 5 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -793,7 +793,7 @@ const ProjectCard = ({ project, index }) => {
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 bg-[#7C5CFF] rounded-full"
+                className="absolute w-1 h-1 bg-[#5C4438] rounded-full"
                 initial={{
                   x: Math.random() * 100 + '%',
                   y: '100%',
@@ -884,11 +884,11 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-32 bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] relative overflow-hidden">
+    <section id="projects" className="py-32 bg-gradient-to-b from-[#0D0C0A] via-[#1C1A17] to-[#0D0C0A] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#7C5CFF]/20 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#22C1C3]/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#5C4438]/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#D6CBB8]/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -899,11 +899,11 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#7C5CFF] via-[#22C1C3] to-[#7C5CFF] bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
+            <span className="bg-gradient-to-r from-[#5C4438] via-[#D6CBB8] to-[#5C4438] bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
               Featured Projects
             </span>
           </h2>
-          <p className="text-[#94A3B8] text-lg max-w-2xl mx-auto">
+          <p className="text-[#D6CBB8] text-lg max-w-2xl mx-auto">
             Hover to explore each project in detail
           </p>
         </motion.div>
@@ -920,11 +920,11 @@ const Projects = () => {
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
               onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
-              className="group relative bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden hover:border-[#7C5CFF]/50 transition-[border-color,box-shadow] duration-300 hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] flex flex-col h-full"
+              className="group relative bg-[#0D0C0A] border border-white/10 rounded-3xl overflow-hidden hover:border-[#5C4438]/50 transition-[border-color,box-shadow] duration-300 hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] flex flex-col h-full"
             >
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent z-10 opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D0C0A] to-transparent z-10 opacity-60" />
                 <img
                   src={project.image}
                   alt={project.title}
@@ -934,26 +934,26 @@ const Projects = () => {
                 <div className="absolute top-4 right-4 z-20 p-2 bg-black/50 backdrop-blur-md rounded-lg border border-white/10">
                   {(() => {
                     const Icon = project.icon;
-                    return <Icon size={20} className="text-[#7C5CFF]" />;
+                    return <Icon size={20} className="text-[#5C4438]" />;
                   })()}
                 </div>
               </div>
 
               {/* Content Section */}
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#7C5CFF] transition-colors">
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#5C4438] transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-[#22C1C3] text-sm font-medium mb-3">{project.subtitle}</p>
+                <p className="text-[#D6CBB8] text-sm font-medium mb-3">{project.subtitle}</p>
 
-                <p className="text-[#94A3B8] text-sm mb-4 line-clamp-3 flex-grow">
+                <p className="text-[#D6CBB8] text-sm mb-4 line-clamp-3 flex-grow">
                   {project.description}
                 </p>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="px-2 py-1 bg-[#1E293B] text-[#94A3B8] rounded text-xs border border-white/5">
+                    <span key={tag} className="px-2 py-1 bg-[#1C1A17] text-[#D6CBB8] rounded text-xs border border-white/5">
                       {tag}
                     </span>
                   ))}
@@ -963,10 +963,10 @@ const Projects = () => {
                 <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
                   <div className="flex -space-x-2">
                     {/* Stack Icons/Dots placeholder */}
-                    <div className="w-6 h-6 rounded-full bg-[#7C5CFF]/20 border border-[#7C5CFF]/30 flex items-center justify-center text-[10px] text-[#7C5CFF]">
+                    <div className="w-6 h-6 rounded-full bg-[#5C4438]/20 border border-[#5C4438]/30 flex items-center justify-center text-[10px] text-[#5C4438]">
                       AI
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-[#22C1C3]/20 border border-[#22C1C3]/30 flex items-center justify-center text-[10px] text-[#22C1C3]">
+                    <div className="w-6 h-6 rounded-full bg-[#D6CBB8]/20 border border-[#D6CBB8]/30 flex items-center justify-center text-[10px] text-[#D6CBB8]">
                       ML
                     </div>
                   </div>
@@ -976,7 +976,7 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ x: 3 }}
-                    className="text-sm text-white hover:text-[#7C5CFF] flex items-center gap-1 transition-colors"
+                    className="text-sm text-white hover:text-[#5C4438] flex items-center gap-1 transition-colors"
                   >
                     View <ExternalLink size={14} />
                   </motion.a>
@@ -1036,7 +1036,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-[#1E293B]">
+    <section id="experience" className="py-24 bg-[#1C1A17]">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -1055,21 +1055,21 @@ const Experience = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 50 }}
-              className="relative pl-8 border-l-2 border-[#7C5CFF]/30"
+              className="relative pl-8 border-l-2 border-[#5C4438]/30"
             >
-              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#7C5CFF]" />
+              <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#5C4438]" />
 
               <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-xl hover:bg-white/10 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
                 <div className="flex flex-wrap items-start justify-between mb-4">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
-                    <p className="text-[#22C1C3] font-semibold">{exp.company}</p>
-                    <p className="text-[#94A3B8] text-sm">{exp.location}</p>
+                    <p className="text-[#D6CBB8] font-semibold">{exp.company}</p>
+                    <p className="text-[#D6CBB8] text-sm">{exp.location}</p>
                   </div>
                   <div className="flex flex-col items-end gap-2">
-                    <span className="text-[#94A3B8]">{exp.period}</span>
+                    <span className="text-[#D6CBB8]">{exp.period}</span>
                     {exp.current && (
-                      <span className="px-3 py-1 bg-[#22C1C3]/20 text-[#22C1C3] rounded-full text-sm">
+                      <span className="px-3 py-1 bg-[#D6CBB8]/20 text-[#D6CBB8] rounded-full text-sm">
                         Currently Working
                       </span>
                     )}
@@ -1078,8 +1078,8 @@ const Experience = () => {
 
                 <ul className="space-y-2">
                   {exp.description.map((item, i) => (
-                    <li key={i} className="text-[#94A3B8] flex items-start gap-2">
-                      <span className="text-[#7C5CFF] mt-1">•</span>
+                    <li key={i} className="text-[#D6CBB8] flex items-start gap-2">
+                      <span className="text-[#5C4438] mt-1">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -1118,7 +1118,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-24 bg-[#0F172A]">
+    <section id="skills" className="py-24 bg-[#0D0C0A]">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -1145,8 +1145,8 @@ const Skills = () => {
                 {category.skills.map((skill) => (
                   <motion.span
                     key={skill}
-                    className="px-3 py-1 bg-gradient-to-r from-[#7C5CFF]/20 to-[#22C1C3]/20 border border-[#7C5CFF]/30 text-white rounded-full text-sm"
-                    whileHover={{ scale: 1.1, borderColor: '#7C5CFF' }}
+                    className="px-3 py-1 bg-gradient-to-r from-[#5C4438]/20 to-[#D6CBB8]/20 border border-[#5C4438]/30 text-white rounded-full text-sm"
+                    whileHover={{ scale: 1.1, borderColor: '#5C4438' }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     {skill}
@@ -1187,7 +1187,7 @@ const Research = () => {
   ];
 
   return (
-    <section id="research" className="py-24 bg-gradient-to-b from-[#0F172A] to-[#1E293B]">
+    <section id="research" className="py-24 bg-gradient-to-b from-[#0D0C0A] to-[#1C1A17]">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -1209,9 +1209,9 @@ const Research = () => {
               whileHover={{ scale: 1.05, rotateY: 5 }}
               className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-xl hover:bg-white/10 transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
             >
-              <div className="text-[#22C1C3] font-semibold mb-2">{achievement.type}</div>
+              <div className="text-[#D6CBB8] font-semibold mb-2">{achievement.type}</div>
               <h3 className="text-xl font-bold text-white mb-3">{achievement.title}</h3>
-              <p className="text-[#94A3B8] text-sm">{achievement.description}</p>
+              <p className="text-[#D6CBB8] text-sm">{achievement.description}</p>
             </motion.div>
           ))}
         </div>
@@ -1240,14 +1240,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#0F172A] relative">
+    <section id="contact" className="py-24 bg-[#0D0C0A] relative">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Get In <span className="bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">Touch</span>
+            Get In <span className="bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] bg-clip-text text-transparent">Touch</span>
           </h2>
 
-          <p className="text-lg text-[#94A3B8] mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-[#D6CBB8] mb-12 max-w-2xl mx-auto">
             I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!
           </p>
 
@@ -1261,9 +1261,9 @@ const Contact = () => {
               whileHover={{ y: -5, borderColor: 'rgba(124, 92, 255, 0.5)' }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <Github className="w-12 h-12 text-[#22C1C3] mx-auto mb-4 group-hover:scale-110 transition-transform" />
+              <Github className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-white font-semibold mb-2">GitHub</h3>
-              <p className="text-[#94A3B8] text-sm">@Hac-2002</p>
+              <p className="text-[#D6CBB8] text-sm">@Hac-2002</p>
             </motion.a>
 
             {/* LinkedIn Card */}
@@ -1275,9 +1275,9 @@ const Contact = () => {
               whileHover={{ y: -5, borderColor: 'rgba(124, 92, 255, 0.5)' }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <Linkedin className="w-12 h-12 text-[#22C1C3] mx-auto mb-4 group-hover:scale-110 transition-transform" />
+              <Linkedin className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-white font-semibold mb-2">LinkedIn</h3>
-              <p className="text-[#94A3B8] text-sm">in/shivamboda</p>
+              <p className="text-[#D6CBB8] text-sm">in/shivamboda</p>
             </motion.a>
 
             {/* Email Card with Copy */}
@@ -1290,12 +1290,12 @@ const Contact = () => {
               {copiedEmail ? (
                 <Check className="w-12 h-12 text-green-400 mx-auto mb-4" />
               ) : (
-                <Mail className="w-12 h-12 text-[#22C1C3] mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <Mail className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               )}
               <h3 className="text-white font-semibold mb-2">
                 {copiedEmail ? 'Copied!' : 'Email'}
               </h3>
-              <p className="text-[#94A3B8] text-sm flex items-center justify-center gap-2">
+              <p className="text-[#D6CBB8] text-sm flex items-center justify-center gap-2">
                 shivamboda@gmail.com
                 {!copiedEmail && <Copy size={14} />}
               </p>
@@ -1313,10 +1313,10 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-[#0F172A] border-t border-white/10">
+    <footer className="py-12 bg-[#0D0C0A] border-t border-white/10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-[#94A3B8] text-center md:text-left">
+          <div className="text-[#D6CBB8] text-center md:text-left">
             © {new Date().getFullYear()} Shivam Boda. All rights reserved.
           </div>
 
@@ -1325,7 +1325,7 @@ const Footer = () => {
               href="https://github.com/shivamboda"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#94A3B8] hover:text-white transition-colors"
+              className="text-[#D6CBB8] hover:text-white transition-colors"
               whileHover={{ scale: 1.2, rotate: 5 }}
             >
               <Github size={24} />
@@ -1334,14 +1334,14 @@ const Footer = () => {
               href="https://www.linkedin.com/in/shivamboda"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#94A3B8] hover:text-white transition-colors"
+              className="text-[#D6CBB8] hover:text-white transition-colors"
               whileHover={{ scale: 1.2, rotate: -5 }}
             >
               <Linkedin size={24} />
             </motion.a>
             <motion.a
               href="mailto:shivamboda@gmail.com"
-              className="text-[#94A3B8] hover:text-white transition-colors"
+              className="text-[#D6CBB8] hover:text-white transition-colors"
               whileHover={{ scale: 1.2, rotate: 5 }}
             >
               <Mail size={24} />
@@ -1394,7 +1394,7 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="bg-[#0F172A] min-h-screen">
+    <div className="bg-[#0D0C0A] min-h-screen">
       <Header activeSection={activeSection} />
       <Hero reducedMotion={reducedMotion} />
       <About />
