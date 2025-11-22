@@ -603,15 +603,19 @@ const About = () => {
 
           <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
-              I'm Shivam Boda, an AI & ML engineer passionate about building intelligent systems that solve real-world problems at scale. My experience spans machine learning, deep learning, computer vision, and big-data engineering — from designing high-accuracy ML models to working with distributed data platforms like Spark, Hive, and HDFS.
+              I'm Shivam Boda, an <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">AI and ML engineer</span> who genuinely enjoys figuring out how things work. Whether it’s a complex machine learning problem, an oddly satisfying data pipeline, or a good puzzle, I’m driven by curiosity and the thrill of solving challenges that connect ideas to real-world impact.
             </p>
 
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
-              I love taking ideas from raw concept to production-ready execution — researching, experimenting, and crafting systems that are fast, reliable, and engineered with purpose. Recently, I've been expanding deeper into large-scale data pipelines, cloud platforms, and advanced ML architectures to push what's possible with applied AI.
+              My work spans machine learning, deep learning, computer vision, and big-data engineering. I’ve designed high-accuracy models, built distributed data solutions with Spark, Hive, and HDFS, and taken projects from rough concepts all the way to production-ready systems. I care a lot about <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">clean engineering</span>, <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">scalability</span>, and building things that feel seamless and intelligent rather than just “smart on paper.”
+            </p>
+
+            <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
+              Outside of engineering, I’m endlessly fascinated by how the world works, especially physics, biology, and chemistry. That curiosity naturally feeds into my work, where I enjoy experimenting, learning, and pushing what’s possible with applied AI and large-scale systems.
             </p>
 
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-8">
-              I focus heavily on <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">precision</span>, <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">scalability</span>, and <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">clean engineering</span> practices while building solutions that feel seamless, intelligent, and genuinely impactful.
+              At my core, I love building things that are <span className="font-bold bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] bg-clip-text text-transparent">thoughtful, precise, and genuinely useful</span>.
             </p>
           </div>
         </div>
