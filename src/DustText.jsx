@@ -4,23 +4,30 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const DustText = ({ text, className = '' }) => {
     const { scrollY } = useScroll();
 
-    // Split text into characters, preserving spaces
-    const characters = useMemo(() => {
-        return text.split('').map((char, index) => ({
-            char,
-            id: index,
-            // Generate random values for each character's "dust" trajectory
-            randomX: Math.random() * 200 - 100, // Scatter left/right
-            randomY: Math.random() * -150 - 50, // Float up
-            randomRotate: Math.random() * 180 - 90, // Spin
-            randomDelay: Math.random() * 0.2, // Stagger start slightly
+    // Split text into words to prevent mid-word breaking
+    const words = useMemo(() => {
+        return text.split(' ').map((word, wordIndex) => ({
+            word,
+            id: wordIndex,
+            chars: word.split('').map((char, charIndex) => ({
+                char,
+                id: `${wordIndex}-${charIndex}`,
+                randomX: Math.random() * 200 - 100,
+                randomY: Math.random() * -150 - 50,
+                randomRotate: Math.random() * 180 - 90,
+                randomDelay: Math.random() * 0.2,
+            }))
         }));
     }, [text]);
 
     return (
-        <span className={`inline-block ${className}`}>
-            {characters.map((item) => (
-                <DustChar key={item.id} item={item} scrollY={scrollY} />
+        <span className={`inline ${className}`}>
+            {words.map((word, idx) => (
+                <span key={word.id} className="inline-block" style={{ marginRight: idx < words.length - 1 ? '0.25em' : '0' }}>
+                    {word.chars.map((item) => (
+                        <DustChar key={item.id} item={item} scrollY={scrollY} />
+                    ))}
+                </span>
             ))}
         </span>
     );
@@ -45,7 +52,6 @@ const DustChar = ({ item, scrollY }) => {
                 scale,
                 filter: useTransform(blur, (b) => `blur(${b})`),
                 display: 'inline-block',
-                whiteSpace: 'pre', // Preserve spaces
             }}
             className="relative"
         >

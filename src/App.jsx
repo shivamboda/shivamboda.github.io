@@ -376,10 +376,17 @@ const Header = ({ activeSection }) => {
     e.preventDefault();
     setIsOpen(false);
 
-    const target = document.getElementById(item.toLowerCase());
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Small delay to let mobile menu close animation complete
+    setTimeout(() => {
+      const target = document.getElementById(item.toLowerCase());
+      if (target) {
+        const offsetTop = target.offsetTop - 80; // Account for fixed header
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }, 300); // Match the mobile menu animation duration
   };
 
   return (
@@ -554,7 +561,7 @@ const Hero = ({ reducedMotion }) => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex flex-col justify-center items-center text-center z-20"
         >
 
@@ -563,7 +570,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.9 }}
           >
             <DustText text="Hi — I'm" /> <br />
             <DustElement className="relative inline-block">
@@ -583,7 +590,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-xl md:text-2xl text-[#D6CBB8] mb-2 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.9 }}
           >
             <span className="text-white font-semibold"><DustText text="Machine Learning" /></span> <DustText text="&" /> <span className="text-white font-semibold"><DustText text="Big Data Engineer" /></span>
           </motion.div>
@@ -592,7 +599,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-lg text-[#5C4438] mb-8 font-medium italic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.5 }}
+            transition={{ delay: 0.7, duration: 0.9 }}
           >
             <DustText text='"Turning data into intelligent systems."' />
           </motion.div>
@@ -601,7 +608,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-2xl hyphens-auto break-words"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.9, duration: 0.9 }}
           >
             <DustText text="Building scalable ML systems and enterprise data pipelines. Specializing in applied AI, big-data engineering, and performant model development." />
           </motion.p>
@@ -610,7 +617,7 @@ const Hero = ({ reducedMotion }) => {
             className="flex flex-col sm:flex-row gap-6 items-center justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.9 }}
           >
             <DustElement>
               <motion.a
