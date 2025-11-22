@@ -12,6 +12,8 @@ import courseBotImg from './assets/coursehelp.png';
 import FloatingTerms from './FloatingTerms';
 import DustText from './DustText';
 import DustElement from './DustElement';
+import SoundToggle from './components/SoundToggle';
+import useSound from './hooks/useSound';
 
 // ============================================================================
 // UTILITY HOOKS & HELPERS
@@ -340,6 +342,7 @@ const AntiGravityHero = () => {
 const Header = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { hover } = useSound();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -400,6 +403,7 @@ const Header = ({ activeSection }) => {
                 }`}
               whileHover={{ y: -2 }}
               transition={{ type: 'spring', stiffness: 300 }}
+              onMouseEnter={hover}
             >
               {activeSection === item.toLowerCase() && (
                 <motion.div
@@ -458,13 +462,16 @@ const Header = ({ activeSection }) => {
 
 const SocialLink = ({ icon: Icon, href, action, label }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const { success, openLink } = useSound();
 
   const handleClick = () => {
     if (action) {
       action();
+      success(); // Play success sound when copying
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } else if (href) {
+      openLink(); // Play link sound when opening external links
       window.open(href, '_blank');
     }
   };
@@ -509,6 +516,7 @@ const Hero = ({ reducedMotion }) => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const { swoosh } = useSound();
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -601,6 +609,7 @@ const Hero = ({ reducedMotion }) => {
                 className="group relative px-8 py-4 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(124, 92, 255, 0.6)' }}
                 whileTap={{ scale: 0.95 }}
+                onClick={swoosh}
               >
                 <span className="relative z-10">See Projects</span>
                 <motion.span
@@ -1232,9 +1241,11 @@ const Research = () => {
 
 const Contact = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const { success, openLink } = useSound();
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('shivamboda@gmail.com');
+    success(); // Play email sound
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -1260,6 +1271,7 @@ const Contact = () => {
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all group"
               whileHover={{ y: -5, borderColor: 'rgba(124, 92, 255, 0.5)' }}
               transition={{ type: 'spring', stiffness: 300 }}
+              onClick={openLink}
             >
               <Github className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-white font-semibold mb-2">GitHub</h3>
@@ -1274,6 +1286,7 @@ const Contact = () => {
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all group"
               whileHover={{ y: -5, borderColor: 'rgba(124, 92, 255, 0.5)' }}
               transition={{ type: 'spring', stiffness: 300 }}
+              onClick={openLink}
             >
               <Linkedin className="w-12 h-12 text-[#D6CBB8] mx-auto mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-white font-semibold mb-2">LinkedIn</h3>
@@ -1316,38 +1329,9 @@ const Footer = () => {
     <footer className="py-12 bg-[#0D0C0A] border-t border-white/10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-[#D6CBB8] text-center md:text-left">
+          <div className="text-[#D6CBB8] text-center">
             © {new Date().getFullYear()} Shivam Boda. All rights reserved.
           </div>
-
-          <div className="flex items-center gap-6">
-            <motion.a
-              href="https://github.com/shivamboda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#D6CBB8] hover:text-white transition-colors"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-            >
-              <Github size={24} />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/shivamboda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#D6CBB8] hover:text-white transition-colors"
-              whileHover={{ scale: 1.2, rotate: -5 }}
-            >
-              <Linkedin size={24} />
-            </motion.a>
-            <motion.a
-              href="mailto:shivamboda@gmail.com"
-              className="text-[#D6CBB8] hover:text-white transition-colors"
-              whileHover={{ scale: 1.2, rotate: 5 }}
-            >
-              <Mail size={24} />
-            </motion.a>
-          </div>
-
 
         </div>
       </div>
@@ -1404,6 +1388,7 @@ export default function Portfolio() {
       <Research />
       <Contact />
       <Footer />
+      <SoundToggle />
     </div>
   );
 }
