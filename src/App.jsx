@@ -342,7 +342,6 @@ const AntiGravityHero = () => {
 const Header = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { hover } = useSound();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -403,7 +402,6 @@ const Header = ({ activeSection }) => {
                 }`}
               whileHover={{ y: -2 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              onMouseEnter={hover}
             >
               {activeSection === item.toLowerCase() && (
                 <motion.div
