@@ -10,6 +10,8 @@ import travelBuddyImg from './assets/travelbuddy.png';
 import crackDetectImg from './assets/crack.png';
 import courseBotImg from './assets/coursehelp.png';
 import FloatingTerms from './FloatingTerms';
+import DustText from './DustText';
+import DustElement from './DustElement';
 
 // ============================================================================
 // UTILITY HOOKS & HELPERS
@@ -454,6 +456,55 @@ const Header = ({ activeSection }) => {
 // HERO SECTION
 // ============================================================================
 
+const SocialLink = ({ icon: Icon, href, action, label }) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleClick = () => {
+    if (action) {
+      action();
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
+  return (
+    <motion.button
+      onClick={handleClick}
+      className={`p-3 bg-white/5 border border-white/10 rounded-full transition-all duration-300 ${isCopied
+        ? 'text-green-400 border-green-400/50 bg-green-400/10'
+        : 'text-[#94A3B8] hover:text-white hover:bg-white/10'
+        }`}
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label={label}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isCopied ? (
+          <motion.div
+            key="check"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+          >
+            <Check size={20} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="icon"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+          >
+            <Icon size={20} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
+  );
+};
+
 const Hero = ({ reducedMotion }) => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
@@ -497,8 +548,8 @@ const Hero = ({ reducedMotion }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Hi — I'm <br />
-            <span className="relative inline-block">
+            <DustText text="Hi — I'm" /> <br />
+            <DustElement className="relative inline-block">
               <span className="bg-gradient-to-r from-[#7C5CFF] via-[#22C1C3] to-[#7C5CFF] bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
                 Shivam Boda
               </span>
@@ -508,26 +559,26 @@ const Hero = ({ reducedMotion }) => {
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.8, duration: 0.8, ease: "circOut" }}
               />
-            </span>
+            </DustElement>
           </motion.h1>
 
-          <motion.p
+          <motion.div
             className="text-xl md:text-2xl text-[#94A3B8] mb-2 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <span className="text-white font-semibold">Machine Learning</span> & <span className="text-white font-semibold">Big Data Engineer</span>
-          </motion.p>
+            <span className="text-white font-semibold"><DustText text="Machine Learning" /></span> <DustText text="&" /> <span className="text-white font-semibold"><DustText text="Big Data Engineer" /></span>
+          </motion.div>
 
-          <motion.p
+          <motion.div
             className="text-lg text-[#7C5CFF] mb-8 font-medium italic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.5 }}
           >
-            "Turning data into intelligent systems."
-          </motion.p>
+            <DustText text='"Turning data into intelligent systems."' />
+          </motion.div>
 
           <motion.p
             className="text-lg text-[#94A3B8]/80 mb-10 leading-relaxed max-w-xl"
@@ -535,7 +586,7 @@ const Hero = ({ reducedMotion }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            Building scalable machine learning systems and enterprise-grade data pipelines. Specializing in applied AI, big-data engineering, and high-performance model development.
+            <DustText text="Building scalable machine learning systems and enterprise-grade data pipelines. Specializing in applied AI, big-data engineering, and high-performance model development." />
           </motion.p>
 
           <motion.div
@@ -544,42 +595,35 @@ const Hero = ({ reducedMotion }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <motion.a
-              href="#projects"
-              className="group relative px-8 py-4 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
-              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(124, 92, 255, 0.6)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10">See Projects</span>
-              <motion.span
-                className="relative z-10"
-                animate={{ x: [0, 5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            <DustElement>
+              <motion.a
+                href="#projects"
+                className="group relative px-8 py-4 bg-gradient-to-r from-[#7C5CFF] to-[#22C1C3] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(124, 92, 255, 0.6)' }}
+                whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight size={20} />
-              </motion.span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-            </motion.a>
-
-            <div className="flex items-center gap-4">
-              {[
-                { icon: Github, href: "https://github.com/shivamboda" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/shivam-boda-910026246/" },
-                { icon: Mail, href: "mailto:shivamboda14@gmail.com" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/5 border border-white/10 rounded-full text-[#94A3B8] hover:text-white hover:bg-white/10 hover:border-[#7C5CFF]/50 transition-all duration-300"
-                  whileHover={{ y: -3, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
+                <span className="relative z-10">See Projects</span>
+                <motion.span
+                  className="relative z-10"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                 >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
-            </div>
+                  <ChevronRight size={20} />
+                </motion.span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+              </motion.a>
+            </DustElement>
+            <DustElement>
+              <div className="flex items-center gap-4">
+                <SocialLink icon={Github} href="https://github.com/shivamboda" label="GitHub" />
+                <SocialLink icon={Linkedin} href="https://www.linkedin.in/shivamboda/" label="LinkedIn" />
+                <SocialLink
+                  icon={Mail}
+                  action={() => navigator.clipboard.writeText('shivamboda@gmail.com')}
+                  label="Email"
+                />
+              </div>
+            </DustElement>
           </motion.div>
         </motion.div>
       </div>
@@ -596,7 +640,7 @@ const Hero = ({ reducedMotion }) => {
 
 const About = () => {
   return (
-    <section id="about" className="py-12 bg-[#0F172A] relative">
+    <section id="about" className="pt-0 pb-12 bg-[#0F172A] relative">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">About Me</h2>
@@ -876,7 +920,7 @@ const Projects = () => {
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
               onClick={() => setHoveredIndex(hoveredIndex === index ? null : index)}
-              className="group relative bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden hover:border-[#7C5CFF]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] flex flex-col h-full"
+              className="group relative bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden hover:border-[#7C5CFF]/50 transition-[border-color,box-shadow] duration-300 hover:shadow-[0_0_30px_rgba(124,92,255,0.2)] flex flex-col h-full"
             >
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden">
