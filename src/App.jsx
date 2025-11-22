@@ -1344,7 +1344,7 @@ const Footer = () => {
   return (
     <footer className="py-12 bg-[#0D0C0A] border-t border-white/10">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <div className="text-[#D6CBB8] text-center">
             © {new Date().getFullYear()} Shivam Boda. All rights reserved.
           </div>
