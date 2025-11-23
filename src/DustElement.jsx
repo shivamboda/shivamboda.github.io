@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useMobile from './hooks/useMobile';
 
 const DustElement = ({ children, className = '' }) => {
     const { scrollY } = useScroll();
+    const isMobile = useMobile();
 
     // Generate random values for the element's "dust" trajectory
     const dustPhysics = useMemo(() => ({
@@ -12,12 +14,12 @@ const DustElement = ({ children, className = '' }) => {
     }), []);
 
     // Map scroll position [0, 300] to animation values
-    const x = useTransform(scrollY, [0, 300], [0, dustPhysics.randomX]);
-    const y = useTransform(scrollY, [0, 300], [0, dustPhysics.randomY]);
-    const rotate = useTransform(scrollY, [0, 300], [0, dustPhysics.randomRotate]);
+    const x = useTransform(scrollY, [0, 300], [0, isMobile ? 0 : dustPhysics.randomX]);
+    const y = useTransform(scrollY, [0, 300], [0, isMobile ? -20 : dustPhysics.randomY]); // Less movement on mobile
+    const rotate = useTransform(scrollY, [0, 300], [0, isMobile ? 0 : dustPhysics.randomRotate]);
     const opacity = useTransform(scrollY, [0, 200], [1, 0]);
     const scale = useTransform(scrollY, [0, 300], [1, 0.5]);
-    const blur = useTransform(scrollY, [0, 200], ["0px", "4px"]);
+    const blur = useTransform(scrollY, [0, 200], ["0px", isMobile ? "0px" : "4px"]); // No blur on mobile
 
     return (
         <motion.div

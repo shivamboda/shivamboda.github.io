@@ -14,6 +14,7 @@ import DustText from './DustText';
 import DustElement from './DustElement';
 import SoundToggle from './components/SoundToggle';
 import useSound from './hooks/useSound';
+import useMobile from './hooks/useMobile';
 
 // ============================================================================
 // UTILITY HOOKS & HELPERS
@@ -495,7 +496,7 @@ const SocialLink = ({ icon: Icon, href, action, label }) => {
   return (
     <motion.button
       onClick={handleClick}
-      className={`p-3 bg-white/5 border border-white/10 rounded-full transition-all duration-300 ${isCopied
+      className={`p-4 md:p-3 bg-white/5 border border-white/10 rounded-full transition-all duration-300 ${isCopied
         ? 'text-green-400 border-green-400/50 bg-green-400/10'
         : 'text-[#D6CBB8] hover:text-white hover:bg-white/10'
         }`}
@@ -533,6 +534,7 @@ const Hero = ({ reducedMotion }) => {
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
   const { swoosh } = useSound();
+  const isMobile = useMobile();
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -561,7 +563,7 @@ const Hero = ({ reducedMotion }) => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: isMobile ? 0.8 : 1.2, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex flex-col justify-center items-center text-center z-20"
         >
 
@@ -570,7 +572,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.9 }}
+            transition={{ delay: isMobile ? 0.2 : 0.3, duration: isMobile ? 0.6 : 0.9 }}
           >
             <DustText text="Hi — I'm" /> <br />
             <DustElement className="relative inline-block">
@@ -590,7 +592,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-xl md:text-2xl text-[#D6CBB8] mb-2 font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.9 }}
+            transition={{ delay: isMobile ? 0.3 : 0.5, duration: isMobile ? 0.6 : 0.9 }}
           >
             <span className="text-white font-semibold"><DustText text="Machine Learning" /></span> <DustText text="&" /> <span className="text-white font-semibold"><DustText text="Big Data Engineer" /></span>
           </motion.div>
@@ -599,7 +601,7 @@ const Hero = ({ reducedMotion }) => {
             className="text-lg text-[#5C4438] mb-8 font-medium italic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.9 }}
+            transition={{ delay: isMobile ? 0.4 : 0.7, duration: isMobile ? 0.6 : 0.9 }}
           >
             <DustText text='"Turning data into intelligent systems."' />
           </motion.div>
@@ -608,21 +610,21 @@ const Hero = ({ reducedMotion }) => {
             className="text-lg text-[#D6CBB8]/80 mb-10 leading-relaxed max-w-2xl hyphens-auto break-words"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.9 }}
+            transition={{ delay: isMobile ? 0.5 : 0.9, duration: isMobile ? 0.6 : 0.9 }}
           >
             <DustText text="Building scalable ML systems and enterprise data pipelines. Specializing in applied AI, big-data engineering, and performant model development." />
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 items-center justify-center"
+            className="flex flex-row flex-wrap justify-center items-center gap-3 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.9 }}
+            transition={{ delay: isMobile ? 0.6 : 1.1, duration: isMobile ? 0.6 : 0.9 }}
           >
             <DustElement>
               <motion.a
                 href="#projects"
-                className="group relative px-8 py-4 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] text-white rounded-full font-bold text-lg inline-flex items-center gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
+                className="group relative px-4 py-2 sm:px-8 sm:py-4 bg-gradient-to-r from-[#5C4438] to-[#D6CBB8] text-white rounded-full font-bold text-sm sm:text-lg inline-flex items-center gap-2 sm:gap-3 shadow-[0_0_20px_rgba(124,92,255,0.4)] animate-slow-pulse overflow-hidden"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(124, 92, 255, 0.6)' }}
                 whileTap={{ scale: 0.95 }}
                 onClick={swoosh}
@@ -633,13 +635,13 @@ const Hero = ({ reducedMotion }) => {
                   animate={{ x: [0, 5, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={isMobile ? 16 : 20} />
                 </motion.span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
               </motion.a>
             </DustElement>
             <DustElement>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <SocialLink icon={Github} href="https://github.com/shivamboda" label="GitHub" />
                 <SocialLink icon={Linkedin} href="https://www.linkedin.com/in/shivamboda/" label="LinkedIn" />
                 <SocialLink
@@ -1404,7 +1406,6 @@ export default function Portfolio() {
       <Research />
       <Contact />
       <Footer />
-      <SoundToggle />
     </div>
   );
 }

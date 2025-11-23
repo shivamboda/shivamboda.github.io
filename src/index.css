@@ -146,3 +146,22 @@ h5,
 h6 {
   font-family: 'Playfair Display', serif;
 }
+
+@media (max-width: 768px) {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Hint browser to optimize these properties */
+  .motion-div,
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  a,
+  button {
+    will-change: transform, opacity;
+  }
+}

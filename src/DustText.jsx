@@ -1,14 +1,20 @@
 import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useMobile from './hooks/useMobile';
 
 const DustText = ({ text, className = '' }) => {
     const { scrollY } = useScroll();
+    const isMobile = useMobile();
 
     // Split text into words to prevent mid-word breaking
     const words = useMemo(() => {
         return text.split(' ').map((word, wordIndex) => ({
             word,
             id: wordIndex,
+            // Word-level physics for mobile
+            randomX: Math.random() * 100 - 50, // Less scatter for words
+            randomY: Math.random() * -100 - 20,
+            randomRotate: Math.random() * 60 - 30,
             chars: word.split('').map((char, charIndex) => ({
                 char,
                 id: `${wordIndex}-${charIndex}`,
@@ -20,6 +26,28 @@ const DustText = ({ text, className = '' }) => {
         }));
     }, [text]);
 
+    if (isMobile) {
+        // Mobile: Scatter words instead of characters (better performance)
+        return (
+            <span className={`inline ${className}`}>
+                {words.map((word, idx) => (
+                    <span key={word.id} className="inline-block" style={{ marginRight: idx < words.length - 1 ? '0.25em' : '0' }}>
+                        <DustChar
+                            item={{
+                                char: word.word,
+                                randomX: word.randomX,
+                                randomY: word.randomY,
+                                randomRotate: word.randomRotate
+                            }}
+                            scrollY={scrollY}
+                        />
+                    </span>
+                ))}
+            </span>
+        );
+    }
+
+    // Desktop: Full Dust Effect (Character level)
     return (
         <span className={`inline ${className}`}>
             {words.map((word, idx) => (
