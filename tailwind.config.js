@@ -7,12 +7,21 @@ export default {
     theme: {
         extend: {
             colors: {
-                'black-bean': '#0D0C0A',
-                'coffee-charcoal': '#1C1A17',
-                'deep-roast': '#3B2F2F',
-                'mocha-brown': '#5C4438',
-                'soft-cream': '#EDE6D6',
-                'warm-linen': '#D6CBB8',
+                'black-bean': 'var(--bg-primary)', // Mapped to primary bg
+                'coffee-charcoal': 'var(--bg-secondary)',
+                'deep-roast': 'var(--accent-secondary)',
+                'mocha-brown': 'var(--accent-primary)',
+                'soft-cream': 'var(--text-primary)', // Mapped to primary text
+                'warm-linen': 'var(--text-secondary)',
+                // Semantic names
+                'bg-primary': 'var(--bg-primary)',
+                'bg-secondary': 'var(--bg-secondary)',
+                'text-primary': 'var(--text-primary)',
+                'text-secondary': 'var(--text-secondary)',
+                'accent-primary': 'var(--accent-primary)',
+                'accent-secondary': 'var(--accent-secondary)',
+                'border-color': 'var(--border-color)',
+                'card-bg': 'var(--card-bg)',
             },
             fontFamily: {
                 'heading': ['"Playfair Display"', 'serif'],
