@@ -583,8 +583,8 @@ const Hero = ({ reducedMotion }) => {
             transition={{ delay: isMobile ? 0.2 : 0.3, duration: isMobile ? 0.6 : 0.9 }}
           >
             <DustText text="Hi — I'm" /> <br />
-            <DustElement className="relative inline-block">
-              <span className="inline-block font-name bg-gradient-to-r from-accent-primary via-text-secondary to-accent-primary bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg">
+            <div className="relative inline-block">
+              <span className="inline-block font-name bg-gradient-to-r from-accent-primary via-text-secondary to-accent-primary bg-clip-text text-transparent whitespace-nowrap animate-gradient-shift bg-[length:200%_auto] drop-shadow-lg pb-1">
                 Shivam Boda
               </span>
               <motion.span
@@ -593,7 +593,7 @@ const Hero = ({ reducedMotion }) => {
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.8, duration: 0.8, ease: "circOut" }}
               />
-            </DustElement>
+            </div>
           </motion.h1>
 
           <motion.div
