@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useSound from '../hooks/useSound';
+import coffeeIcon from '../assets/icons/coffee-bean.png';
+import saturnIcon from '../assets/icons/saturn.png';
 
 const ThemeToggle = () => {
     const [isCoffee, setIsCoffee] = useState(true);
@@ -55,7 +57,7 @@ const ThemeToggle = () => {
                             className="absolute inset-0 flex items-center justify-center"
                         >
                             <img
-                                src="/icons/coffee-bean.png"
+                                src={coffeeIcon}
                                 alt="Coffee Mode"
                                 className="w-6 h-6 object-contain opacity-80"
                             />
@@ -70,7 +72,7 @@ const ThemeToggle = () => {
                             className="absolute inset-0 flex items-center justify-center"
                         >
                             <img
-                                src="/icons/saturn.png"
+                                src={saturnIcon}
                                 alt="Space Mode"
                                 className="w-7 h-7 object-contain"
                             />
