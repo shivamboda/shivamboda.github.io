@@ -2,6 +2,7 @@ import { useCallback, useRef, useEffect } from 'react';
 import swooshSound from '../assets/sounds/swoosh.wav';
 import emailSound from '../assets/sounds/email.wav';
 import linkSound from '../assets/sounds/opening other links.wav';
+import toggleSound from '../assets/sounds/toggle.wav';
 
 const useSound = () => {
     const audioContextRef = useRef(null);
@@ -15,6 +16,7 @@ const useSound = () => {
     const swooshAudioRef = useRef(null);
     const emailAudioRef = useRef(null);
     const linkAudioRef = useRef(null);
+    const toggleAudioRef = useRef(null);
 
     useEffect(() => {
         // Initialize AudioContext on first user interaction
@@ -33,6 +35,9 @@ const useSound = () => {
 
         linkAudioRef.current = new Audio(linkSound);
         linkAudioRef.current.volume = 0.4;
+
+        toggleAudioRef.current = new Audio(toggleSound);
+        toggleAudioRef.current.volume = 0.4;
 
         document.addEventListener('click', initAudio, { once: true });
         return () => document.removeEventListener('click', initAudio);
@@ -94,6 +99,14 @@ const useSound = () => {
         }
     }, []);
 
+    const toggle = useCallback(() => {
+        if (isMutedRef.current()) return;
+        if (toggleAudioRef.current) {
+            toggleAudioRef.current.currentTime = 0;
+            toggleAudioRef.current.play().catch(e => console.log('Toggle play failed:', e));
+        }
+    }, []);
+
     const toggleMute = useCallback(() => {
         const currentValue = isMutedRef.current();
         const newValue = !currentValue;
@@ -106,7 +119,7 @@ const useSound = () => {
         return isMutedRef.current();
     }, []);
 
-    return { hover, click, swoosh, success, openLink, toggleMute, isMuted };
+    return { hover, click, swoosh, success, openLink, toggle, toggleMute, isMuted };
 };
 
 export default useSound;

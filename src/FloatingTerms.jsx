@@ -62,9 +62,28 @@ const FloatingTerms = () => {
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 0.5,
             vy: (Math.random() - 0.5) * 0.5,
-            size: isMobile ? Math.random() * 4 + 10 : Math.random() * 8 + 12, // Mobile: 10-14px, Desktop: 12-20px
-            opacity: isMobile ? Math.random() * 0.15 + 0.1 : Math.random() * 0.2 + 0.2, // Mobile: 0.1-0.25, Desktop: 0.2-0.4
+            size: isMobile ? Math.random() * 4 + 10 : Math.random() * 8 + 12,
+            opacity: isMobile ? Math.random() * 0.15 + 0.1 : Math.random() * 0.2 + 0.2,
         }));
+
+        // Helper to get current accent color
+        const getAccentColor = (opacity = 1) => {
+            const style = getComputedStyle(document.documentElement);
+            const color = style.getPropertyValue('--accent-primary').trim();
+            // Convert hex to rgb if needed, or just return if it's already usable
+            // Assuming hex for now, but canvas needs explicit handling if we want opacity
+            // Simple hack: use the hex and let canvas handle it, or parse it.
+            // Since our vars are hex, we need to convert to rgba for opacity support.
+
+            let r = 92, g = 68, b = 56; // Default fallback
+            if (color.startsWith('#')) {
+                const hex = color.substring(1);
+                r = parseInt(hex.substring(0, 2), 16);
+                g = parseInt(hex.substring(2, 4), 16);
+                b = parseInt(hex.substring(4, 6), 16);
+            }
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        };
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -85,7 +104,7 @@ const FloatingTerms = () => {
 
                 // Draw term
                 ctx.font = `bold ${term.size}px Lato, sans-serif`;
-                ctx.fillStyle = `rgba(92, 68, 56, ${term.opacity})`;
+                ctx.fillStyle = getAccentColor(term.opacity);
                 ctx.fillText(term.text, term.x, term.y);
             });
 
@@ -101,7 +120,7 @@ const FloatingTerms = () => {
                         ctx.beginPath();
                         ctx.moveTo(term1.x, term1.y);
                         ctx.lineTo(term2.x, term2.y);
-                        ctx.strokeStyle = `rgba(92, 68, 56, ${opacity})`;
+                        ctx.strokeStyle = getAccentColor(opacity);
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
