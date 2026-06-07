@@ -1038,12 +1038,12 @@ const Experience = () => {
       title: 'Big Data Engineer',
       company: 'TCS (Apple Project)',
       location: 'Bengaluru, India',
-      period: 'July 2025 – Present',
+      period: 'Jul 2025 – Present',
       description: [
-        'Completed project onboarding, environment setup, and access configuration',
-        'Gaining hands-on experience with Spark, Hive, HDFS, and SQL',
-        'Participating in KT sessions on data pipelines and architecture',
-        'Preparing to contribute to ETL workflows and large-scale processing'
+        'Debugged and performance-tuned Scala/Spark jobs in a production big data environment, improving pipeline stability and processing efficiency',
+        'Contributed to a large-scale data migration project — designed and executed ETL workflows spanning HDFS, Hive, and SQL data stores',
+        'Gained hands-on experience with distributed data systems, enterprise-grade batch processing architectures, and production pipeline operations',
+        'Participated in knowledge-transfer sessions on data pipeline design and collaborated with senior engineers on environment setup and access configuration'
       ],
       current: true
     },
